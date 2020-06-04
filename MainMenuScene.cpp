@@ -56,12 +56,13 @@ void MainMenuScene::update()
 
 		if (newGameButton.getState() == state::clicked)
 		{
-			
-			(std::make_unique<NewGameScene>());
+			// Загрузить сцену создания игры
+			SceneManager::getInstance().loadScene(std::make_unique<NewGameScene>());
 		}
 		else if (connectButton.getState() == state::clicked)
 		{
-			(std::make_unique<ConnectScene>());
+			// Загрузить сцену подключения к игре
+			SceneManager::getInstance().loadScene(std::make_unique<ConnectScene>());
 		}
 		else if (exitButton.getState() == state::clicked)
 		{
