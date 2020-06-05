@@ -8,45 +8,45 @@ NewGameScene::NewGameScene() { }
 
 void NewGameScene::init()
 {
-	// Сообщение об инициализации сцены, нужно для дебага
+	// РЎРѕРѕР±С‰РµРЅРёРµ РѕР± РёРЅРёС†РёР°Р»РёР·Р°С†РёРё СЃС†РµРЅС‹, РЅСѓР¶РЅРѕ РґР»СЏ РґРµР±Р°РіР°
 	std::cout << "NewGameScene Init\n";
 
-	// Загрузка шрифта
+	// Р—Р°РіСЂСѓР·РєР° С€СЂРёС„С‚Р°
 	font.loadFromFile("Roboto-Medium.ttf");
 
-	// Инициализация элементов интерфейса
+	// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЌР»РµРјРµРЅС‚РѕРІ РёРЅС‚РµСЂС„РµР№СЃР°
 
-	// Текст "Grid size: "
+	// РўРµРєСЃС‚ "Grid size: "
 	sizeText.setFont(font);
 	sizeText.setString("Grid size: ");
 	sizeText.setPosition(window.getSize().x / 2 - sizeText.getGlobalBounds().width / 2, 20);
 
-	// Текст "PORT: "
+	// РўРµРєСЃС‚ "PORT: "
 	portText.setFont(font);
 	portText.setString("PORT: ");
 	portText.setPosition(window.getSize().x / 2 - portText.getGlobalBounds().width / 2, 100);
 
-	// Текстовое поле для ввода размера поля
+	// РўРµРєСЃС‚РѕРІРѕРµ РїРѕР»Рµ РґР»СЏ РІРІРѕРґР° СЂР°Р·РјРµСЂР° РїРѕР»СЏ
 	sizeTextField.setFont(font);
-	sizeTextField.setText("6"); // По умолчанию 6
+	sizeTextField.setText("6"); // РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ 6
 	sizeTextField.setPosition(sf::Vector2f(window.getSize().x / 2 - sizeTextField.getSize().x / 2, 60));
 
-	// Текстовое поле для ввода порта
+	// РўРµРєСЃС‚РѕРІРѕРµ РїРѕР»Рµ РґР»СЏ РІРІРѕРґР° РїРѕСЂС‚Р°
 	portTextField.setFont(font);
-	portTextField.setText("7777"); // По умолчанию 7777
+	portTextField.setText("7777"); // РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ 7777
 	portTextField.setPosition(sf::Vector2f(window.getSize().x / 2 - portTextField.getSize().x / 2, 140));
 
-	// Кнопка запуска оффлайн игры
+	// РљРЅРѕРїРєР° Р·Р°РїСѓСЃРєР° РѕС„С„Р»Р°Р№РЅ РёРіСЂС‹
 	playButton.setFont(font);
 	playButton.setText("Play");
 	playButton.setPosition(window.getSize().x / 2 - playButton.getSize().x / 2, 220);
 
-	// Кнопка создания сервера
+	// РљРЅРѕРїРєР° СЃРѕР·РґР°РЅРёСЏ СЃРµСЂРІРµСЂР°
 	serverButton.setFont(font);
 	serverButton.setText("Create server");
 	serverButton.setPosition(window.getSize().x / 2 - serverButton.getSize().x / 2, 300);
 
-	// Кнопка возвращения в главное меню
+	// РљРЅРѕРїРєР° РІРѕР·РІСЂР°С‰РµРЅРёСЏ РІ РіР»Р°РІРЅРѕРµ РјРµРЅСЋ
 	backButton.setFont(font);
 	backButton.setText("Back");
 	backButton.setPosition(window.getSize().x / 2 - backButton.getSize().x / 2, 490);
@@ -54,10 +54,10 @@ void NewGameScene::init()
 
 void NewGameScene::update()
 {
-	// Обработка событий (движение мыши, клик, нажатие клавиш и т.д.)
+	// РћР±СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёР№ (РґРІРёР¶РµРЅРёРµ РјС‹С€Рё, РєР»РёРє, РЅР°Р¶Р°С‚РёРµ РєР»Р°РІРёС€ Рё С‚.Рґ.)
 	for (auto event = sf::Event{}; window.pollEvent(event);)
 	{
-		// Проверки на закрытие приложения или сцены
+		// РџСЂРѕРІРµСЂРєРё РЅР° Р·Р°РєСЂС‹С‚РёРµ РїСЂРёР»РѕР¶РµРЅРёСЏ РёР»Рё СЃС†РµРЅС‹
 		if (event.type == sf::Event::Closed)
 		{
 			SceneManager::getInstance().quit();
@@ -67,21 +67,21 @@ void NewGameScene::update()
 			SceneManager::getInstance().closeScene();
 		}
 
-		// Обновление состояний кнопок
+		// РћР±РЅРѕРІР»РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёР№ РєРЅРѕРїРѕРє
 		playButton.input(event, window);
 		serverButton.input(event, window);
 		backButton.input(event, window);
 
-		// Обновление состояний текстовых полей
+		// РћР±РЅРѕРІР»РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёР№ С‚РµРєСЃС‚РѕРІС‹С… РїРѕР»РµР№
 		sizeTextField.input(event);
 		portTextField.input(event);
 
 		if (playButton.getState() == state::clicked)
 		{
-			// Парсинг размера поля из текстового поля
+			// РџР°СЂСЃРёРЅРі СЂР°Р·РјРµСЂР° РїРѕР»СЏ РёР· С‚РµРєСЃС‚РѕРІРѕРіРѕ РїРѕР»СЏ
 			int size = atoi(sizeTextField.getText().toAnsiString().c_str());
 
-			// Ограничение размера поля
+			// РћРіСЂР°РЅРёС‡РµРЅРёРµ СЂР°Р·РјРµСЂР° РїРѕР»СЏ
 			if (size > 10)
 			{
 				sizeTextField.setText("10");
@@ -92,18 +92,18 @@ void NewGameScene::update()
 			}
 			else
 			{
-				// Загрузить сцену оффлайн игры
+				// Р—Р°РіСЂСѓР·РёС‚СЊ СЃС†РµРЅСѓ РѕС„С„Р»Р°Р№РЅ РёРіСЂС‹
 				SceneManager::getInstance().loadScene(std::make_unique<OfflinePlayScene>(size));
 			}
 		}
 		else if (serverButton.getState() == state::clicked)
 		{
-			// Парсинг размера поля из текстового поля
+			// РџР°СЂСЃРёРЅРі СЂР°Р·РјРµСЂР° РїРѕР»СЏ РёР· С‚РµРєСЃС‚РѕРІРѕРіРѕ РїРѕР»СЏ
 			int size = atoi(sizeTextField.getText().toAnsiString().c_str());
-			// Парсинг порта из текстового поля
+			// РџР°СЂСЃРёРЅРі РїРѕСЂС‚Р° РёР· С‚РµРєСЃС‚РѕРІРѕРіРѕ РїРѕР»СЏ
 			int port = atoi(portTextField.getText().toAnsiString().c_str());
 
-			// Ограничение размера поля
+			// РћРіСЂР°РЅРёС‡РµРЅРёРµ СЂР°Р·РјРµСЂР° РїРѕР»СЏ
 			if (size > 10)
 			{
 				sizeTextField.setText("10");
@@ -114,13 +114,13 @@ void NewGameScene::update()
 			}
 			else
 			{
-				// Загрузить сцену онлайн игры
+				// Р—Р°РіСЂСѓР·РёС‚СЊ СЃС†РµРЅСѓ РѕРЅР»Р°Р№РЅ РёРіСЂС‹
 				SceneManager::getInstance().loadScene(std::make_unique<OnlinePlayScene>(size, "127.0.0.1", port, true));
 			}
 		}
 		else if (backButton.getState() == state::clicked)
 		{
-			// Закрытие сцены
+			// Р—Р°РєСЂС‹С‚РёРµ СЃС†РµРЅС‹
 			SceneManager::getInstance().closeScene();
 		}
 	}
@@ -130,7 +130,7 @@ void NewGameScene::draw()
 {
 	window.clear(sf::Color(9, 188, 138, 255));
 
-	// Отрисовка элементов интерфейса
+	// РћС‚СЂРёСЃРѕРІРєР° СЌР»РµРјРµРЅС‚РѕРІ РёРЅС‚РµСЂС„РµР№СЃР°
 	window.draw(sizeText);
 	window.draw(portText);
 	sizeTextField.render(window);

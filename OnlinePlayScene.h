@@ -8,7 +8,7 @@
 #include "Grid.h"
 #include "Button.h"
 
-// Сцена онлайн игры
+// РЎС†РµРЅР° РѕРЅР»Р°Р№РЅ РёРіСЂС‹
 class OnlinePlayScene : public Scene
 {
 public:
@@ -17,25 +17,25 @@ public:
 	void update() override;
 	void draw() override;
 private:
-	Grid grid; // Игровое поле
-	sf::Font font; // Шрифт
-	sf::Text turnText; // Текст текущего игрока
+	Grid grid; // РРіСЂРѕРІРѕРµ РїРѕР»Рµ
+	sf::Font font; // РЁСЂРёС„С‚
+	sf::Text turnText; // РўРµРєСЃС‚ С‚РµРєСѓС‰РµРіРѕ РёРіСЂРѕРєР°
 
-	bool isServer; // Открыта ли сцена у сервера
-	bool player1Turn; // Текущий игрок
-	bool clientConnected; // Подключен ли клиент
+	bool isServer; // РћС‚РєСЂС‹С‚Р° Р»Рё СЃС†РµРЅР° Сѓ СЃРµСЂРІРµСЂР°
+	bool player1Turn; // РўРµРєСѓС‰РёР№ РёРіСЂРѕРє
+	bool clientConnected; // РџРѕРґРєР»СЋС‡РµРЅ Р»Рё РєР»РёРµРЅС‚
 
-	int PORT; // Порт
-	std::string address; // Ип-адрес
-	sf::TcpSocket socket; // Сокет для передачи пакетов
-	sf::Mutex globalMutex; // Мутекс для обеспечения безопастности многопотока
-	sf::Packet serverPacket; // Пакет
+	int PORT; // РџРѕСЂС‚
+	std::string address; // РРї-Р°РґСЂРµСЃ
+	sf::TcpSocket socket; // РЎРѕРєРµС‚ РґР»СЏ РїРµСЂРµРґР°С‡Рё РїР°РєРµС‚РѕРІ
+	sf::Mutex globalMutex; // РњСѓС‚РµРєСЃ РґР»СЏ РѕР±РµСЃРїРµС‡РµРЅРёСЏ Р±РµР·РѕРїР°СЃС‚РЅРѕСЃС‚Рё РјРЅРѕРіРѕРїРѕС‚РѕРєР°
+	sf::Packet serverPacket; // РџР°РєРµС‚
 
-	sf::Thread listenerThread; // Поток для получения пакетов от другого игрока
+	sf::Thread listenerThread; // РџРѕС‚РѕРє РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РїР°РєРµС‚РѕРІ РѕС‚ РґСЂСѓРіРѕРіРѕ РёРіСЂРѕРєР°
 	sf::TcpListener listener;
 
-	Button backButton; // Кнопка возвращения в меню
+	Button backButton; // РљРЅРѕРїРєР° РІРѕР·РІСЂР°С‰РµРЅРёСЏ РІ РјРµРЅСЋ
 
-	void packetListener(); // Функция для молучения пакетов от другого игрока
-	void serverSend(); // Функция для отправки пакета другому игроку
+	void packetListener(); // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РјРѕР»СѓС‡РµРЅРёСЏ РїР°РєРµС‚РѕРІ РѕС‚ РґСЂСѓРіРѕРіРѕ РёРіСЂРѕРєР°
+	void serverSend(); // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РѕС‚РїСЂР°РІРєРё РїР°РєРµС‚Р° РґСЂСѓРіРѕРјСѓ РёРіСЂРѕРєСѓ
 };

@@ -5,7 +5,7 @@
 #include "Grid.h"
 #include "Button.h"
 
-// Сцена оффлайн игры
+// РЎС†РµРЅР° РѕС„С„Р»Р°Р№РЅ РёРіСЂС‹
 class OfflinePlayScene final : public Scene
 {
 public:
@@ -14,9 +14,9 @@ public:
 	void update() override;
 	void draw() override;
 private:
-	Grid grid; // Игровое поле
-	sf::Font font; // Шрифт
-	sf::Text turnText; // Текст текущего игрока
-	bool player1Turn; // Текущий игрок
-	Button backButton; // Кнопка возвращения в меню
+	Grid grid; // РРіСЂРѕРІРѕРµ РїРѕР»Рµ
+	sf::Font font; // РЁСЂРёС„С‚
+	sf::Text turnText; // РўРµРєСЃС‚ С‚РµРєСѓС‰РµРіРѕ РёРіСЂРѕРєР°
+	bool player1Turn; // РўРµРєСѓС‰РёР№ РёРіСЂРѕРє
+	Button backButton; // РљРЅРѕРїРєР° РІРѕР·РІСЂР°С‰РµРЅРёСЏ РІ РјРµРЅСЋ
 };

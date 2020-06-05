@@ -6,7 +6,7 @@
 #include "Button.h"
 #include "TextField.h"
 
-// Сцена подключения к серверу с вводом ip и порта
+// РЎС†РµРЅР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє СЃРµСЂРІРµСЂСѓ СЃ РІРІРѕРґРѕРј ip Рё РїРѕСЂС‚Р°
 class ConnectScene : public Scene
 {
 public:
@@ -15,9 +15,9 @@ public:
 	void update() override;
 	void draw() override;
 private:
-	TextField addressField; // Текстовое поле для ввода ип-адреса
-	TextField portField; // Текстовое поле для ввода порта
-	Button connectButton; // Кнопка для подключения к серверу
-	Button backButton; // Кнопка возвращения в меню
-	sf::Font font; // Шрифт
+	TextField addressField; // РўРµРєСЃС‚РѕРІРѕРµ РїРѕР»Рµ РґР»СЏ РІРІРѕРґР° РёРї-Р°РґСЂРµСЃР°
+	TextField portField; // РўРµРєСЃС‚РѕРІРѕРµ РїРѕР»Рµ РґР»СЏ РІРІРѕРґР° РїРѕСЂС‚Р°
+	Button connectButton; // РљРЅРѕРїРєР° РґР»СЏ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє СЃРµСЂРІРµСЂСѓ
+	Button backButton; // РљРЅРѕРїРєР° РІРѕР·РІСЂР°С‰РµРЅРёСЏ РІ РјРµРЅСЋ
+	sf::Font font; // РЁСЂРёС„С‚
 };

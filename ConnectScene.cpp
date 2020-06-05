@@ -12,23 +12,23 @@ void ConnectScene::init()
 
 	int halfWidth = window.getSize().x / 2;
 
-	// Поле ввода ip-адреса
+	// РџРѕР»Рµ РІРІРѕРґР° ip-Р°РґСЂРµСЃР°
 	addressField.setFont(font);
 	addressField.setPosition(sf::Vector2f(halfWidth - addressField.getSize().x / 2, 90));
 	addressField.setText("127.0.0.1");
 
-	// Поле ввода порта
+	// РџРѕР»Рµ РІРІРѕРґР° РїРѕСЂС‚Р°
 	portField.setFont(font);
 	portField.setPosition(sf::Vector2f(halfWidth - addressField.getSize().x / 2, 140));
 	portField.setText("7777");
 
 
-	// Кнопка подключения
+	// РљРЅРѕРїРєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ
 	connectButton.setFont(font);
 	connectButton.setText("Connect");
 	connectButton.setPosition(halfWidth - connectButton.getSize().x / 2, 190);
 
-	// Кнопка возврата в главное меню
+	// РљРЅРѕРїРєР° РІРѕР·РІСЂР°С‚Р° РІ РіР»Р°РІРЅРѕРµ РјРµРЅСЋ
 	backButton.setFont(font);
 	backButton.setText("Back");
 	backButton.setPosition(halfWidth - backButton.getSize().x / 2, 270);
@@ -36,10 +36,10 @@ void ConnectScene::init()
 
 void ConnectScene::update()
 {
-	// Обработка событий (движение мыши, клик, нажатие клавиш и т.д.)
+	// РћР±СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёР№ (РґРІРёР¶РµРЅРёРµ РјС‹С€Рё, РєР»РёРє, РЅР°Р¶Р°С‚РёРµ РєР»Р°РІРёС€ Рё С‚.Рґ.)
 	for (auto event = sf::Event{}; window.pollEvent(event);)
 	{
-		// Проверки на закрытие приложения или сцены
+		// РџСЂРѕРІРµСЂРєРё РЅР° Р·Р°РєСЂС‹С‚РёРµ РїСЂРёР»РѕР¶РµРЅРёСЏ РёР»Рё СЃС†РµРЅС‹
 		if (event.type == sf::Event::Closed)
 		{
 			SceneManager::getInstance().quit();
@@ -49,11 +49,11 @@ void ConnectScene::update()
 			SceneManager::getInstance().closeScene();
 		}
 		
-		// Обновление состояний кнопок
+		// РћР±РЅРѕРІР»РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёР№ РєРЅРѕРїРѕРє
 		connectButton.input(event, window);
 		backButton.input(event, window);
 
-		// Обновление состояний текстовых полей
+		// РћР±РЅРѕРІР»РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёР№ С‚РµРєСЃС‚РѕРІС‹С… РїРѕР»РµР№
 		addressField.input(event);
 		portField.input(event);
 
@@ -61,13 +61,13 @@ void ConnectScene::update()
 		{
 			int port = atoi(portField.getText().toAnsiString().c_str());
 
-			// Загрузка сцены онлайн игры
+			// Р—Р°РіСЂСѓР·РєР° СЃС†РµРЅС‹ РѕРЅР»Р°Р№РЅ РёРіСЂС‹
 			SceneManager::getInstance().loadScene(
 				std::make_unique<OnlinePlayScene>(0, addressField.getText(), port, false));
 		}
 		else if (backButton.getState() == state::clicked)
 		{
-			// Закрытие сцены
+			// Р—Р°РєСЂС‹С‚РёРµ СЃС†РµРЅС‹
 			SceneManager::getInstance().closeScene();
 		}
 	}
@@ -77,7 +77,7 @@ void ConnectScene::draw()
 {
 	window.clear(sf::Color(9, 188, 138, 255));
 
-	// Отрисовка элементов интерфейса
+	// РћС‚СЂРёСЃРѕРІРєР° СЌР»РµРјРµРЅС‚РѕРІ РёРЅС‚РµСЂС„РµР№СЃР°
 	addressField.render(window);
 	portField.render(window);
 	connectButton.render(window);

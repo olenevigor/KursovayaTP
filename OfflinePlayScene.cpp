@@ -7,27 +7,27 @@ OfflinePlayScene::OfflinePlayScene(int gridSize) : grid(gridSize), player1Turn(t
 
 void OfflinePlayScene::init()
 {
-	// Сообщение об инициализации сцены, нужно для дебага
+	// РЎРѕРѕР±С‰РµРЅРёРµ РѕР± РёРЅРёС†РёР°Р»РёР·Р°С†РёРё СЃС†РµРЅС‹, РЅСѓР¶РЅРѕ РґР»СЏ РґРµР±Р°РіР°
 	std::cout << "OfflinePlayScene Init\n";
 
-	// Получение размеров экрана
+	// РџРѕР»СѓС‡РµРЅРёРµ СЂР°Р·РјРµСЂРѕРІ СЌРєСЂР°РЅР°
 	int screenWidth = window.getSize().x;
 	int screenHeight = window.getSize().y;
 
-	// Перемещение поля в центр
+	// РџРµСЂРµРјРµС‰РµРЅРёРµ РїРѕР»СЏ РІ С†РµРЅС‚СЂ
 	grid.setPosition(screenWidth / 2 - grid.getSize().x / 2, screenHeight / 2 - grid.getSize().y / 2);
 
-	// Загрузка шрифта
+	// Р—Р°РіСЂСѓР·РєР° С€СЂРёС„С‚Р°
 	font.loadFromFile("Roboto-Medium.ttf");
 
-	// Инициализация элементов интерфейса
+	// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЌР»РµРјРµРЅС‚РѕРІ РёРЅС‚РµСЂС„РµР№СЃР°
 	
-	// Текст текущего игрока
+	// РўРµРєСЃС‚ С‚РµРєСѓС‰РµРіРѕ РёРіСЂРѕРєР°
 	turnText.setFont(font);
 	turnText.setString("Player 1 turn");
 	turnText.setPosition(screenWidth / 2 - turnText.getGlobalBounds().width / 2, 40);
 
-	// Кнопка возвращения в меню
+	// РљРЅРѕРїРєР° РІРѕР·РІСЂР°С‰РµРЅРёСЏ РІ РјРµРЅСЋ
 	backButton.setFont(font);
 	backButton.setText("Back");
 	backButton.setPosition(window.getSize().x / 2 - backButton.getSize().x / 2, 490);
@@ -35,10 +35,10 @@ void OfflinePlayScene::init()
 
 void OfflinePlayScene::update()
 {
-	// Обработка событий (движение мыши, клик, нажатие клавиш и т.д.)
+	// РћР±СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёР№ (РґРІРёР¶РµРЅРёРµ РјС‹С€Рё, РєР»РёРє, РЅР°Р¶Р°С‚РёРµ РєР»Р°РІРёС€ Рё С‚.Рґ.)
 	for (auto event = sf::Event{}; window.pollEvent(event);)
 	{
-		// Проверки на закрытие приложения или сцены
+		// РџСЂРѕРІРµСЂРєРё РЅР° Р·Р°РєСЂС‹С‚РёРµ РїСЂРёР»РѕР¶РµРЅРёСЏ РёР»Рё СЃС†РµРЅС‹
 		if (event.type == sf::Event::Closed)
 		{
 			SceneManager::getInstance().quit();
@@ -48,21 +48,21 @@ void OfflinePlayScene::update()
 			SceneManager::getInstance().closeScene();
 		}
 
-		// Обновления состояния кнопки выхода
+		// РћР±РЅРѕРІР»РµРЅРёСЏ СЃРѕСЃС‚РѕСЏРЅРёСЏ РєРЅРѕРїРєРё РІС‹С…РѕРґР°
 		backButton.input(event, window);
 		if (backButton.getState() == state::clicked)
 		{
-			// Закрытие сцены
+			// Р—Р°РєСЂС‹С‚РёРµ СЃС†РµРЅС‹
 			SceneManager::getInstance().closeScene();
 		}
 
 		int row, col;
 		int turn = grid.input(event, window, row, col);
 
-		// Проверка было ли изменено поле
+		// РџСЂРѕРІРµСЂРєР° Р±С‹Р»Рѕ Р»Рё РёР·РјРµРЅРµРЅРѕ РїРѕР»Рµ
 		if (turn != -1)
 		{
-			// Обновление текста текущего игрока
+			// РћР±РЅРѕРІР»РµРЅРёРµ С‚РµРєСЃС‚Р° С‚РµРєСѓС‰РµРіРѕ РёРіСЂРѕРєР°
 			if (player1Turn)
 			{
 				turnText.setString("Player 2 turn");
@@ -74,11 +74,11 @@ void OfflinePlayScene::update()
 
 			player1Turn = !player1Turn;
 
-			// Проверка конца игры
+			// РџСЂРѕРІРµСЂРєР° РєРѕРЅС†Р° РёРіСЂС‹
 			int evens, odds;
 			if (grid.checkWin(evens, odds))
 			{
-				// Если поле занято целиком, загружаем сцену конца игры
+				// Р•СЃР»Рё РїРѕР»Рµ Р·Р°РЅСЏС‚Рѕ С†РµР»РёРєРѕРј, Р·Р°РіСЂСѓР¶Р°РµРј СЃС†РµРЅСѓ РєРѕРЅС†Р° РёРіСЂС‹
 				SceneManager::getInstance().loadScene(std::make_unique<EndGameScene>(evens, odds), true);
 			}
 		}
@@ -89,7 +89,7 @@ void OfflinePlayScene::draw()
 {
 	window.clear(sf::Color(9, 188, 138, 255));
 
-	// Отрисовка интерфейса и поля
+	// РћС‚СЂРёСЃРѕРІРєР° РёРЅС‚РµСЂС„РµР№СЃР° Рё РїРѕР»СЏ
 	grid.render(window);
 	window.draw(turnText);
 	backButton.render(window);

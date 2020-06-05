@@ -6,7 +6,7 @@
 #include "Button.h"
 #include "TextField.h"
 
-// Сцена создания одиночной/мультиплеерной игры
+// РЎС†РµРЅР° СЃРѕР·РґР°РЅРёСЏ РѕРґРёРЅРѕС‡РЅРѕР№/РјСѓР»СЊС‚РёРїР»РµРµСЂРЅРѕР№ РёРіСЂС‹
 class NewGameScene final : public Scene
 {
 public:
@@ -15,12 +15,12 @@ public:
 	void update() override;
 	void draw() override;
 private:
-	sf::Font font; // Шрифт
-	sf::Text sizeText; // Текст размера поля
-	sf::Text portText; // Текст порта
-	TextField sizeTextField; // Текстовое поле для ввода размера поля
-	TextField portTextField; // Текстовое поле для ввода порта
-	Button playButton; // Кнопка начать оффлайн игру
-	Button serverButton; // Кнопка создать сервер
-	Button backButton; // Кнопка возвращения в меню
+	sf::Font font; // РЁСЂРёС„С‚
+	sf::Text sizeText; // РўРµРєСЃС‚ СЂР°Р·РјРµСЂР° РїРѕР»СЏ
+	sf::Text portText; // РўРµРєСЃС‚ РїРѕСЂС‚Р°
+	TextField sizeTextField; // РўРµРєСЃС‚РѕРІРѕРµ РїРѕР»Рµ РґР»СЏ РІРІРѕРґР° СЂР°Р·РјРµСЂР° РїРѕР»СЏ
+	TextField portTextField; // РўРµРєСЃС‚РѕРІРѕРµ РїРѕР»Рµ РґР»СЏ РІРІРѕРґР° РїРѕСЂС‚Р°
+	Button playButton; // РљРЅРѕРїРєР° РЅР°С‡Р°С‚СЊ РѕС„С„Р»Р°Р№РЅ РёРіСЂСѓ
+	Button serverButton; // РљРЅРѕРїРєР° СЃРѕР·РґР°С‚СЊ СЃРµСЂРІРµСЂ
+	Button backButton; // РљРЅРѕРїРєР° РІРѕР·РІСЂР°С‰РµРЅРёСЏ РІ РјРµРЅСЋ
 };

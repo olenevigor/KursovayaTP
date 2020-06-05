@@ -9,7 +9,7 @@ void EndGameScene::init()
 
 	winText.setFont(font);
 
-	// Îïðåäåëåíèå ïîáåäèòåëÿ
+	// ÐžÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð±ÐµÐ´Ð¸Ñ‚ÐµÐ»Ñ
 	if (odds > evens)
 		winText.setString("Player 1 win!");
 	else if (evens > odds)

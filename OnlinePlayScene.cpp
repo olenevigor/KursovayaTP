@@ -11,17 +11,17 @@ OnlinePlayScene::OnlinePlayScene(int gridSize, std::string Address, int _PORT, b
 
 void OnlinePlayScene::init()
 {
-	// Сообщение об инициализации сцены, нужно для дебага
+	// РЎРѕРѕР±С‰РµРЅРёРµ РѕР± РёРЅРёС†РёР°Р»РёР·Р°С†РёРё СЃС†РµРЅС‹, РЅСѓР¶РЅРѕ РґР»СЏ РґРµР±Р°РіР°
 	std::cout << "OnlinePlayScene Init\n";
 
-	// Если не получается подключиться к серверу, закрываем сцену
+	// Р•СЃР»Рё РЅРµ РїРѕР»СѓС‡Р°РµС‚СЃСЏ РїРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ Рє СЃРµСЂРІРµСЂСѓ, Р·Р°РєСЂС‹РІР°РµРј СЃС†РµРЅСѓ
 	if (!isServer && socket.connect(address, PORT, sf::Time(sf::seconds(2))) != sf::Socket::Done)
 	{
 		SceneManager::getInstance().closeScene();
 		return;
 	}
 
-	// Если сцена запущена для клиента, получаем у сервера размер поля
+	// Р•СЃР»Рё СЃС†РµРЅР° Р·Р°РїСѓС‰РµРЅР° РґР»СЏ РєР»РёРµРЅС‚Р°, РїРѕР»СѓС‡Р°РµРј Сѓ СЃРµСЂРІРµСЂР° СЂР°Р·РјРµСЂ РїРѕР»СЏ
 	if (!isServer)
 	{
 		// receive grid size
@@ -33,27 +33,27 @@ void OnlinePlayScene::init()
 		grid.initGrid(gridSize);
 	}
 
-	// Поток для получения пакетов от другого игрока
+	// РџРѕС‚РѕРє РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РїР°РєРµС‚РѕРІ РѕС‚ РґСЂСѓРіРѕРіРѕ РёРіСЂРѕРєР°
 	listenerThread.launch();
 
-	// Получение размеров экрана
+	// РџРѕР»СѓС‡РµРЅРёРµ СЂР°Р·РјРµСЂРѕРІ СЌРєСЂР°РЅР°
 	int screenWidth = window.getSize().x;
 	int screenHeight = window.getSize().y;
 
-	// Перемещение поля в центр
+	// РџРµСЂРµРјРµС‰РµРЅРёРµ РїРѕР»СЏ РІ С†РµРЅС‚СЂ
 	grid.setPosition(screenWidth / 2 - grid.getSize().x / 2, screenHeight / 2 - grid.getSize().y / 2);
 
-	// Загрузка шрифтов
+	// Р—Р°РіСЂСѓР·РєР° С€СЂРёС„С‚РѕРІ
 	font.loadFromFile("Roboto-Medium.ttf");
 
-	// Инициализация элементов интерфейса
+	// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЌР»РµРјРµРЅС‚РѕРІ РёРЅС‚РµСЂС„РµР№СЃР°
 
-	// Текст текущего игрока
+	// РўРµРєСЃС‚ С‚РµРєСѓС‰РµРіРѕ РёРіСЂРѕРєР°
 	turnText.setFont(font);
 	turnText.setString("Waiting second player...");
 	turnText.setPosition(screenWidth / 2 - turnText.getGlobalBounds().width / 2, 40);
 
-	// Кнопка возвращения в меню
+	// РљРЅРѕРїРєР° РІРѕР·РІСЂР°С‰РµРЅРёСЏ РІ РјРµРЅСЋ
 	backButton.setFont(font);
 	backButton.setText("Back");
 	backButton.setPosition(window.getSize().x / 2 - backButton.getSize().x / 2, 490);
@@ -61,72 +61,72 @@ void OnlinePlayScene::init()
 
 void OnlinePlayScene::update()
 {
-	// Обработка событий (движение мыши, клик, нажатие клавиш и т.д.)
+	// РћР±СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёР№ (РґРІРёР¶РµРЅРёРµ РјС‹С€Рё, РєР»РёРє, РЅР°Р¶Р°С‚РёРµ РєР»Р°РІРёС€ Рё С‚.Рґ.)
 	for (auto event = sf::Event{}; window.pollEvent(event);)
 	{
-		// Проверки на закрытие приложения или сцены
+		// РџСЂРѕРІРµСЂРєРё РЅР° Р·Р°РєСЂС‹С‚РёРµ РїСЂРёР»РѕР¶РµРЅРёСЏ РёР»Рё СЃС†РµРЅС‹
 		if (event.type == sf::Event::Closed)
 		{
-			// Закрытие потока получения пакетов от другого игрока
+			// Р—Р°РєСЂС‹С‚РёРµ РїРѕС‚РѕРєР° РїРѕР»СѓС‡РµРЅРёСЏ РїР°РєРµС‚РѕРІ РѕС‚ РґСЂСѓРіРѕРіРѕ РёРіСЂРѕРєР°
 			listenerThread.terminate();
-			// Закрытие приложения
+			// Р—Р°РєСЂС‹С‚РёРµ РїСЂРёР»РѕР¶РµРЅРёСЏ
 			SceneManager::getInstance().quit();
 		}
 		else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
 		{
-			// Закрытие потока получения пакетов от другого игрока
+			// Р—Р°РєСЂС‹С‚РёРµ РїРѕС‚РѕРєР° РїРѕР»СѓС‡РµРЅРёСЏ РїР°РєРµС‚РѕРІ РѕС‚ РґСЂСѓРіРѕРіРѕ РёРіСЂРѕРєР°
 			listenerThread.terminate();
 			listener.close();
-			// Закрытие сцены
+			// Р—Р°РєСЂС‹С‚РёРµ СЃС†РµРЅС‹
 			SceneManager::getInstance().closeScene();
 		}
 
-		// Обновления состояния кнопки выхода
+		// РћР±РЅРѕРІР»РµРЅРёСЏ СЃРѕСЃС‚РѕСЏРЅРёСЏ РєРЅРѕРїРєРё РІС‹С…РѕРґР°
 		backButton.input(event, window);
 		if (backButton.getState() == state::clicked)
 		{
-			// Закрытие потока получения пакетов от другого игрока
+			// Р—Р°РєСЂС‹С‚РёРµ РїРѕС‚РѕРєР° РїРѕР»СѓС‡РµРЅРёСЏ РїР°РєРµС‚РѕРІ РѕС‚ РґСЂСѓРіРѕРіРѕ РёРіСЂРѕРєР°
 			listenerThread.terminate();
 			listener.close();
-			// Закрытие сцены
+			// Р—Р°РєСЂС‹С‚РёРµ СЃС†РµРЅС‹
 			SceneManager::getInstance().closeScene();
 		}
 
-		// Если текущий ход и клиент подключен
+		// Р•СЃР»Рё С‚РµРєСѓС‰РёР№ С…РѕРґ Рё РєР»РёРµРЅС‚ РїРѕРґРєР»СЋС‡РµРЅ
 		if (player1Turn && clientConnected)
 		{
-			// Получаем состояние поля
+			// РџРѕР»СѓС‡Р°РµРј СЃРѕСЃС‚РѕСЏРЅРёРµ РїРѕР»СЏ
 			int row, col;
 			int turn = grid.input(event, window, row, col);
 
-			// Если поле было изменено
+			// Р•СЃР»Рё РїРѕР»Рµ Р±С‹Р»Рѕ РёР·РјРµРЅРµРЅРѕ
 			if (turn != -1)
 			{
-				// Пока делаем ход блокируем получение пакетов
+				// РџРѕРєР° РґРµР»Р°РµРј С…РѕРґ Р±Р»РѕРєРёСЂСѓРµРј РїРѕР»СѓС‡РµРЅРёРµ РїР°РєРµС‚РѕРІ
 				globalMutex.lock();
 
-				// Отправляем текущий ход другому игроку
+				// РћС‚РїСЂР°РІР»СЏРµРј С‚РµРєСѓС‰РёР№ С…РѕРґ РґСЂСѓРіРѕРјСѓ РёРіСЂРѕРєСѓ
 				serverPacket << row << col << turn;
 				serverSend();
 
 				player1Turn = false;
 
-				// Обновление текста
+				// РћР±РЅРѕРІР»РµРЅРёРµ С‚РµРєСЃС‚Р°
 				turnText.setString("Waiting other player...");
 				turnText.setPosition(window.getSize().x / 2 - turnText.getGlobalBounds().width / 2, turnText.getPosition().y);
 
-				// Проверка завершения игры
+				// РџСЂРѕРІРµСЂРєР° Р·Р°РІРµСЂС€РµРЅРёСЏ РёРіСЂС‹
 				int evens, odds;
 				if (grid.checkWin(evens, odds))
 				{
 					listenerThread.terminate();
 					listener.close();
 
-					// Загружаем сцену завершения игры
+					// Р—Р°РіСЂСѓР¶Р°РµРј СЃС†РµРЅСѓ Р·Р°РІРµСЂС€РµРЅРёСЏ РёРіСЂС‹
 					SceneManager::getInstance().loadScene(std::make_unique<EndGameScene>(evens, odds), true);
 				}
 
-				// Разблокировка получения пакетов
+				// Р Р°Р·Р±Р»РѕРєРёСЂРѕРІРєР° РїРѕР»СѓС‡РµРЅРёСЏ РїР°РєРµС‚РѕРІ
 				globalMutex.unlock();
 			}
 		}
@@ -137,7 +137,7 @@ void OnlinePlayScene::draw()
 {
 	window.clear(sf::Color(9, 188, 138, 255));
 
-	// Отрисовка интерфейса и поля
+	// РћС‚СЂРёСЃРѕРІРєР° РёРЅС‚РµСЂС„РµР№СЃР° Рё РїРѕР»СЏ
 	grid.render(window);
 	window.draw(turnText);
 	backButton.render(window);
@@ -149,7 +149,7 @@ void OnlinePlayScene::packetListener()
 {
 	if (isServer)
 	{
-		// Ожидаем подключения клиента
+		// РћР¶РёРґР°РµРј РїРѕРґРєР»СЋС‡РµРЅРёСЏ РєР»РёРµРЅС‚Р°
 		std::cout << "Listening for clients." << std::endl;
 		listener.listen(PORT);
 		listener.accept(socket);
@@ -159,55 +159,55 @@ void OnlinePlayScene::packetListener()
 		turnText.setString("Your turn");
 		turnText.setPosition(window.getSize().x / 2 - turnText.getGlobalBounds().width / 2, turnText.getPosition().y);
 
-		// Отправляем клиенту размер поля
+		// РћС‚РїСЂР°РІР»СЏРµРј РєР»РёРµРЅС‚Сѓ СЂР°Р·РјРµСЂ РїРѕР»СЏ
 		serverPacket << grid.getGridSize();
 		serverSend();
 	}
 
 	while (window.isOpen())
 	{
-		// Получаем пакет от другого игрока
+		// РџРѕР»СѓС‡Р°РµРј РїР°РєРµС‚ РѕС‚ РґСЂСѓРіРѕРіРѕ РёРіСЂРѕРєР°
 		socket.receive(serverPacket);
 
 		while (!serverPacket.endOfPacket())
 		{
-			// Блокируем ход пока получаем ход другого игрока
+			// Р‘Р»РѕРєРёСЂСѓРµРј С…РѕРґ РїРѕРєР° РїРѕР»СѓС‡Р°РµРј С…РѕРґ РґСЂСѓРіРѕРіРѕ РёРіСЂРѕРєР°
 			globalMutex.lock();
 
-			// Распаковываем пакет в переменные
+			// Р Р°СЃРїР°РєРѕРІС‹РІР°РµРј РїР°РєРµС‚ РІ РїРµСЂРµРјРµРЅРЅС‹Рµ
 			int row, col, val;
 			serverPacket >> row >> col >> val;
 
-			// Обновляем поле (вписываем ход другого игрока)
+			// РћР±РЅРѕРІР»СЏРµРј РїРѕР»Рµ (РІРїРёСЃС‹РІР°РµРј С…РѕРґ РґСЂСѓРіРѕРіРѕ РёРіСЂРѕРєР°)
 			grid.setCell(row, col, '0' + val);
 			player1Turn = true;
 
-			// Обновляем текст
+			// РћР±РЅРѕРІР»СЏРµРј С‚РµРєСЃС‚
 			turnText.setString("Your turn");
 			turnText.setPosition(window.getSize().x / 2 - turnText.getGlobalBounds().width / 2, turnText.getPosition().y);
 
-			// Проверка на завершение игры
+			// РџСЂРѕРІРµСЂРєР° РЅР° Р·Р°РІРµСЂС€РµРЅРёРµ РёРіСЂС‹
 			int evens, odds;
 			if (grid.checkWin(evens, odds))
 			{
-				// Загрузка сцены завершения игры
+				// Р—Р°РіСЂСѓР·РєР° СЃС†РµРЅС‹ Р·Р°РІРµСЂС€РµРЅРёСЏ РёРіСЂС‹
 				SceneManager::getInstance().loadScene(std::make_unique<EndGameScene>(evens, odds), true);
 				listener.close();
 				listenerThread.terminate();
 			}
 
-			// Разблокировка хода
+			// Р Р°Р·Р±Р»РѕРєРёСЂРѕРІРєР° С…РѕРґР°
 			globalMutex.unlock();
 		}
 
-		// Очищаем пакет
+		// РћС‡РёС‰Р°РµРј РїР°РєРµС‚
 		serverPacket.clear();
 	}
 }
 
 void OnlinePlayScene::serverSend()
 {
-	// Отправка пакета другому игроку
+	// РћС‚РїСЂР°РІРєР° РїР°РєРµС‚Р° РґСЂСѓРіРѕРјСѓ РёРіСЂРѕРєСѓ
 	if (serverPacket.getDataSize() > 0)
 	{
 		globalMutex.lock();

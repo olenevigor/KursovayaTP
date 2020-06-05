@@ -4,22 +4,22 @@
 #include "SceneManager.h"
 #include "Button.h"
 
-// Сцена завершения игры с подсчётом очков
+// РЎС†РµРЅР° Р·Р°РІРµСЂС€РµРЅРёСЏ РёРіСЂС‹ СЃ РїРѕРґСЃС‡С‘С‚РѕРј РѕС‡РєРѕРІ
 class EndGameScene final : public Scene
 {
 public:
-	// В конструктор передаётся количество чётных сумм и нечётных
+	// Р’ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРµСЂРµРґР°С‘С‚СЃСЏ РєРѕР»РёС‡РµСЃС‚РІРѕ С‡С‘С‚РЅС‹С… СЃСѓРјРј Рё РЅРµС‡С‘С‚РЅС‹С…
 	EndGameScene(int Evens, int Odds);
 	void init() override;
 	void update() override;
 	void draw() override;
 private:
-	sf::Font font; // Шрифт
-	sf::Text winText; // Текст о победителе
-	sf::Text evenNumbersText; // Текст о количестве четных сумм
-	sf::Text oddsNumbersText; // Текст о количестве нечетных сумм
-	Button backButton; // Кнопка возращения назад
+	sf::Font font; // РЁСЂРёС„С‚
+	sf::Text winText; // РўРµРєСЃС‚ Рѕ РїРѕР±РµРґРёС‚РµР»Рµ
+	sf::Text evenNumbersText; // РўРµРєСЃС‚ Рѕ РєРѕР»РёС‡РµСЃС‚РІРµ С‡РµС‚РЅС‹С… СЃСѓРјРј
+	sf::Text oddsNumbersText; // РўРµРєСЃС‚ Рѕ РєРѕР»РёС‡РµСЃС‚РІРµ РЅРµС‡РµС‚РЅС‹С… СЃСѓРјРј
+	Button backButton; // РљРЅРѕРїРєР° РІРѕР·СЂР°С‰РµРЅРёСЏ РЅР°Р·Р°Рґ
 
-	int evens; // Количество четных сумм
-	int odds; // Количество нечетных сумм
+	int evens; // РљРѕР»РёС‡РµСЃС‚РІРѕ С‡РµС‚РЅС‹С… СЃСѓРјРј
+	int odds; // РљРѕР»РёС‡РµСЃС‚РІРѕ РЅРµС‡РµС‚РЅС‹С… СЃСѓРјРј
 };
