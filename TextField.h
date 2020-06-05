@@ -4,7 +4,8 @@
 
 #include <SFML/Graphics.hpp>
 
-// Стандартные настройки текстового поля
+
+// РЎС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё С‚РµРєСЃС‚РѕРІРѕРіРѕ РїРѕР»СЏ
 const int GUI_TEXT_MAX = 16;
 const int GUI_TEXT_BACKSPACE = 8;
 const int GUI_TEXT_ESCAPE = 27;
@@ -12,7 +13,7 @@ const sf::Color GUI_TEXT_GRAY = sf::Color(105, 105, 105);
 const sf::Color GUI_TEXT_FIELD_FILL_COLOR(8, 76, 97, 255);
 const int GUI_TEXT_FIELD_OUTLINE_THICKNESS = 3;
 
-// Класс текстового поля для интерфейса
+// РљР»Р°СЃСЃ С‚РµРєСЃС‚РѕРІРѕРіРѕ РїРѕР»СЏ РґР»СЏ РёРЅС‚РµСЂС„РµР№СЃР°
 class TextField {
 public:
 	TextField();

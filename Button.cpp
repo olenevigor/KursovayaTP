@@ -4,8 +4,8 @@
 
 Button::Button()
 {
-	// Стандартные настройки кнопки
-	// Применяются в конструкторе, чтобы все кнопки были в одном стиле
+	// РЎС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё РєРЅРѕРїРєРё
+	// РџСЂРёРјРµРЅСЏСЋС‚СЃСЏ РІ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРµ, С‡С‚РѕР±С‹ РІСЃРµ РєРЅРѕРїРєРё Р±С‹Р»Рё РІ РѕРґРЅРѕРј СЃС‚РёР»Рµ
 
 	box.setSize(GUI_BUTTON_SIZE);
 	box.setFillColor(GUI_BUTTON_FILL_COLOR);
@@ -21,7 +21,7 @@ void Button::setPosition(float x, float y)
 {
 	box.setPosition(x, y);
 
-	// Текст выравнивается по центру прямоугольника
+	// РўРµРєСЃС‚ РІС‹СЂР°РІРЅРёРІР°РµС‚СЃСЏ РїРѕ С†РµРЅС‚СЂСѓ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°
 	text.setPosition(x + box.getSize().x / 2 - text.getLocalBounds().width / 2,
 		y + box.getSize().y / 2 - text.getLocalBounds().height / 2);
 }
@@ -56,7 +56,7 @@ void Button::input(sf::Event ev, sf::RenderWindow& window)
 {
 	if (ev.type == sf::Event::MouseMoved)
 	{
-		// Проверка находится ли мышь над кнопкой
+		// РџСЂРѕРІРµСЂРєР° РЅР°С…РѕРґРёС‚СЃСЏ Р»Рё РјС‹С€СЊ РЅР°Рґ РєРЅРѕРїРєРѕР№
 		sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 		if (box.getGlobalBounds().contains(sf::Vector2f(mousePos.x, mousePos.y))) {
 			buttonState = state::hovered;
@@ -69,7 +69,7 @@ void Button::input(sf::Event ev, sf::RenderWindow& window)
 	}
 	else if (buttonState == state::hovered && ev.type == sf::Event::MouseButtonReleased)
 	{
-		// Проверка на нажатие по кнопке
+		// РџСЂРѕРІРµСЂРєР° РЅР° РЅР°Р¶Р°С‚РёРµ РїРѕ РєРЅРѕРїРєРµ
 		buttonState = state::clicked;
 	}
 }

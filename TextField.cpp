@@ -25,7 +25,7 @@ void TextField::setPosition(sf::Vector2f vec) {
 }
 
 void TextField::input(sf::Event ev) {
-	// Проверка на нажатие по текстовому полю
+	// РџСЂРѕРІРµСЂРєР° РЅР° РЅР°Р¶Р°С‚РёРµ РїРѕ С‚РµРєСЃС‚РѕРІРѕРјСѓ РїРѕР»СЋ
 	if (ev.type == sf::Event::MouseButtonReleased) {
 		sf::Vector2f pos(ev.mouseButton.x, ev.mouseButton.y);
 		if (box.getGlobalBounds().contains(pos)) {
@@ -36,7 +36,7 @@ void TextField::input(sf::Event ev) {
 		}
 	}
 
-	// Проверка на ввод текста при активном текстовом поле
+	// РџСЂРѕРІРµСЂРєР° РЅР° РІРІРѕРґ С‚РµРєСЃС‚Р° РїСЂРё Р°РєС‚РёРІРЅРѕРј С‚РµРєСЃС‚РѕРІРѕРј РїРѕР»Рµ
 	if (ev.type == sf::Event::TextEntered && active) {
 		sf::String str = txt.getString();
 

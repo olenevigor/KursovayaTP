@@ -4,13 +4,13 @@
 
 #include <SFML/Graphics.hpp>
 
-// Стандартные настройки кнопки
+// РЎС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё РєРЅРѕРїРєРё
 const sf::Vector2f GUI_BUTTON_SIZE(210, 70);
 const sf::Color GUI_BUTTON_FILL_COLOR(8, 76, 97, 255);
 const sf::Color GUI_BUTTON_OUTLINE_COLOR(23, 42, 58, 255);
 const int GUI_BUTTON_OUTLINE_THICKNESS = 3;
 
-// Состояния кнопки
+// РЎРѕСЃС‚РѕСЏРЅРёСЏ РєРЅРѕРїРєРё
 namespace state
 {
 	enum
@@ -21,21 +21,21 @@ namespace state
 	};
 }
 
-// Класс кнопки для интерфейса
+// РљР»Р°СЃСЃ РєРЅРѕРїРєРё РґР»СЏ РёРЅС‚РµСЂС„РµР№СЃР°
 class Button
 {
 public:
 	Button();
-	void setPosition(float x, float y); // Установка позиции
-	void setText(const std::string& str); // Установка размера
-	void setFont(const sf::Font& font); // Установка шрифта
-	sf::Vector2f getSize() const; // Получения размера
-	sf::Uint32 getState() const; // Получение состояния
-	void input(sf::Event ev, sf::RenderWindow& window); // Обновление состояния кнопки
-	void render(sf::RenderWindow& window); // Отрисовка
+	void setPosition(float x, float y); // РЈСЃС‚Р°РЅРѕРІРєР° РїРѕР·РёС†РёРё
+	void setText(const std::string& str); // РЈСЃС‚Р°РЅРѕРІРєР° СЂР°Р·РјРµСЂР°
+	void setFont(const sf::Font& font); // РЈСЃС‚Р°РЅРѕРІРєР° С€СЂРёС„С‚Р°
+	sf::Vector2f getSize() const; // РџРѕР»СѓС‡РµРЅРёСЏ СЂР°Р·РјРµСЂР°
+	sf::Uint32 getState() const; // РџРѕР»СѓС‡РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ
+	void input(sf::Event ev, sf::RenderWindow& window); // РћР±РЅРѕРІР»РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ РєРЅРѕРїРєРё
+	void render(sf::RenderWindow& window); // РћС‚СЂРёСЃРѕРІРєР°
 private:
-	sf::Text text; // Текст на кнопке
-	sf::RectangleShape box; // Прямоугольник (для отображения кнопки)
-	sf::Uint32 buttonState; // Состояние
-	void setActive(bool arg); // Выделить/снять выделение кнопки
+	sf::Text text; // РўРµРєСЃС‚ РЅР° РєРЅРѕРїРєРµ
+	sf::RectangleShape box; // РџСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє (РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РєРЅРѕРїРєРё)
+	sf::Uint32 buttonState; // РЎРѕСЃС‚РѕСЏРЅРёРµ
+	void setActive(bool arg); // Р’С‹РґРµР»РёС‚СЊ/СЃРЅСЏС‚СЊ РІС‹РґРµР»РµРЅРёРµ РєРЅРѕРїРєРё
 };
