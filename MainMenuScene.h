@@ -4,7 +4,7 @@
 #include "SceneManager.h"
 #include "Button.h"
 
-// Сцена главного меню
+// СЃС†РµРЅР° РіР»Р°РІРЅРѕРіРѕ РјРµРЅСЋ
 class MainMenuScene final : public Scene
 {
 public:
@@ -13,8 +13,8 @@ public:
 	void update() override;
 	void draw() override;
 private:
-	Button newGameButton; // Кнопка новой игры
-	Button connectButton; // Кнопка подключения
-	Button exitButton; // Кнопка выхода
-	sf::Font font; // Шрифт
+	Button newGameButton; // В РєРЅРѕРїРєР° РЅРѕРІРѕР№ РёРіСЂС‹
+	Button connectButton; // В РєРЅРѕРїРєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ
+	Button exitButton; // В РєРЅРѕРїРєР° РІС‹С…РѕРґР°
+	sf::Font font; // С€СЂРёС„С‚
 };

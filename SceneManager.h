@@ -6,11 +6,11 @@
 
 class Scene;
 
-// Для менеджера сцен использован паттерн Singleton Мэйерса
+// Р”Р»СЏ РјРµРЅРµРґР¶РµСЂР° СЃС†РµРЅ РёСЃРїРѕР»СЊР·РѕРІР°РЅ РїР°С‚С‚РµСЂРЅ Singleton РњСЌР№РµСЂСЃР°
 class SceneManager
 {
 private:
-	// Приватные конструкторы для паттерна
+	// РџСЂРёРІР°С‚РЅС‹Рµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ РґР»СЏ РїР°С‚С‚РµСЂРЅР°
 	SceneManager();
 	SceneManager(const SceneManager&);
 	SceneManager& operator=(SceneManager&);
@@ -23,20 +23,20 @@ private:
 
 	std::unique_ptr<Scene> next;
 public:
-	// Статическая функция для паттерна
+	// РЎС‚Р°С‚РёС‡РµСЃРєР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ РїР°С‚С‚РµСЂРЅР°
 	static SceneManager& getInstance() {
 		static SceneManager instance;
 		return instance;
 	}
 
-	void run(std::unique_ptr<Scene> scene); // Загрузить начальную сцену
+	void run(std::unique_ptr<Scene> scene); // Р—Р°РіСЂСѓР·РёС‚СЊ РЅР°С‡Р°Р»СЊРЅСѓСЋ СЃС†РµРЅСѓ
 
-	void loadScene(std::unique_ptr<Scene> scene, bool replace = false); // Загрузить новую сцену
-	void closeScene(); // Закрыть текущую сцену
+	void loadScene(std::unique_ptr<Scene> scene, bool replace = false); // Р—Р°РіСЂСѓР·РёС‚СЊ РЅРѕРІСѓСЋ СЃС†РµРЅСѓ
+	void closeScene(); // Р—Р°РєСЂС‹С‚СЊ С‚РµРєСѓС‰СѓСЋ СЃС†РµРЅСѓ
 
-	void nextState(); // Обновление состояние сцен (закрыть/открыть сцену)
-	void update(); // Обновление текущей сцены
-	void draw(); // Отрисовка текущей сцены
+	void nextState(); // РћР±РЅРѕРІР»РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёРµ СЃС†РµРЅ (Р·Р°РєСЂС‹С‚СЊ/РѕС‚РєСЂС‹С‚СЊ СЃС†РµРЅСѓ)
+	void update(); // РћР±РЅРѕРІР»РµРЅРёРµ С‚РµРєСѓС‰РµР№ СЃС†РµРЅС‹
+	void draw(); // РћС‚СЂРёСЃРѕРІРєР° С‚РµРєСѓС‰РµР№ СЃС†РµРЅС‹
 
 	bool running() const;
 	void quit();

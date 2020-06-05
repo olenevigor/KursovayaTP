@@ -17,5 +17,5 @@ public:
 	virtual void update() = 0;
 	virtual void draw() = 0;
 protected:
-	sf::RenderWindow& window; // Окно для отрисовки
+	sf::RenderWindow& window; // РѕРєРЅРѕ РґР»СЏ РѕС‚СЂРёСЃРѕРІРєРё
 };

@@ -11,28 +11,28 @@ MainMenuScene::MainMenuScene() { }
 
 void MainMenuScene::init()
 {
-	// Сообщение об инициализации сцены, нужно для дебага
+	// РЎРѕРѕР±С‰РµРЅРёРµ РѕР± РёРЅРёС†РёР°Р»РёР·Р°С†РёРё СЃС†РµРЅС‹, РЅСѓР¶РЅРѕ РґР»СЏ РґРµР±Р°РіР°
 	std::cout << "MainMenuScene Init\n";
 
-	// Загрузка шрифта
+	// Р—Р°РіСЂСѓР·РєР° С€СЂРёС„С‚Р°
 	font.loadFromFile("Roboto-Medium.ttf");
 
-	// Центр экрана по иксу
+	// Р¦РµРЅС‚СЂ СЌРєСЂР°РЅР° РїРѕ РёРєСЃСѓ
 	int halfWidth = window.getSize().x / 2;
 
-	// Инициализация элементов интерфейса
+	// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЌР»РµРјРµРЅС‚РѕРІ РёРЅС‚РµСЂС„РµР№СЃР°
 
-	// Кнопка новой игры
+	// РљРЅРѕРїРєР° РЅРѕРІРѕР№ РёРіСЂС‹
 	newGameButton.setFont(font);
 	newGameButton.setText("New Game");
 	newGameButton.setPosition(halfWidth - newGameButton.getSize().x / 2, 140);
 
-	// Кнопка подключения
+	// РљРЅРѕРїРєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ
 	connectButton.setFont(font);
 	connectButton.setText("Connect");
 	connectButton.setPosition(halfWidth - connectButton.getSize().x / 2, 220);
 
-	// Кнопка выхода из игры
+	// РљРЅРѕРїРєР° РІС‹С…РѕРґР° РёР· РёРіСЂС‹
 	exitButton.setFont(font);
 	exitButton.setText("Exit");
 	exitButton.setPosition(halfWidth - exitButton.getSize().x / 2, 300);
@@ -40,33 +40,33 @@ void MainMenuScene::init()
 
 void MainMenuScene::update()
 {
-	// Обработка событий (движение мыши, клик, нажатие клавиш и т.д.)
+	// РћР±СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёР№ (РґРІРёР¶РµРЅРёРµ РјС‹С€Рё, РєР»РёРє, РЅР°Р¶Р°С‚РёРµ РєР»Р°РІРёС€ Рё С‚.Рґ.)
 	for (auto event = sf::Event{}; window.pollEvent(event);)
 	{
-		// Проверка на закрытие приложения
+		// РџСЂРѕРІРµСЂРєР° РЅР° Р·Р°РєСЂС‹С‚РёРµ РїСЂРёР»РѕР¶РµРЅРёСЏ
 		if (event.type == sf::Event::Closed)
 		{
 			SceneManager::getInstance().quit();
 		}
 
-		// Обновление состояний кнопок
+		// РћР±РЅРѕРІР»РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёР№ РєРЅРѕРїРѕРє
 		exitButton.input(event, window);
 		newGameButton.input(event, window);
 		connectButton.input(event, window);
 
 		if (newGameButton.getState() == state::clicked)
 		{
-			// Загрузить сцену создания игры
+			// Р—Р°РіСЂСѓР·РёС‚СЊ СЃС†РµРЅСѓ СЃРѕР·РґР°РЅРёСЏ РёРіСЂС‹
 			SceneManager::getInstance().loadScene(std::make_unique<NewGameScene>());
 		}
 		else if (connectButton.getState() == state::clicked)
 		{
-			// Загрузить сцену подключения к игре
+			// Р—Р°РіСЂСѓР·РёС‚СЊ СЃС†РµРЅСѓ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє РёРіСЂРµ
 			SceneManager::getInstance().loadScene(std::make_unique<ConnectScene>());
 		}
 		else if (exitButton.getState() == state::clicked)
 		{
-			// Выход из игры
+			// Р’С‹С…РѕРґ РёР· РёРіСЂС‹
 			SceneManager::getInstance().quit();
 		}
 	}
@@ -76,7 +76,7 @@ void MainMenuScene::draw()
 {
 	window.clear(sf::Color(9, 188, 138, 255));
 
-	// Отрисовка элементов интерфейса
+	// РћС‚СЂРёСЃРѕРІРєР° СЌР»РµРјРµРЅС‚РѕРІ РёРЅС‚РµСЂС„РµР№СЃР°
 	newGameButton.render(window);
 	connectButton.render(window);
 	exitButton.render(window);

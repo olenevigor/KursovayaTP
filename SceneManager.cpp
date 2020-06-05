@@ -46,13 +46,13 @@ void SceneManager::nextState()
 
 void SceneManager::update()
 {
-	// Îáíîâëåíèå òåêóùåé ñöåíû
+	// Ğ¾Ğ±Ğ½Ğ¾Ğ²Ğ»ĞµĞ½Ğ¸Ğµ Ñ‚ĞµĞºÑƒÑ‰ĞµĞ¹ ÑÑ†ĞµĞ½Ñ‹
 	scenes.top()->update();
 }
 
 void SceneManager::draw()
 {
-	// Îòğèñîâêà òåêóùåé ñöåíû
+	// Ğ¾Ñ‚Ñ€Ğ¸ÑĞ¾Ğ²ĞºĞ° Ñ‚ĞµĞºÑƒÑ‰ĞµĞ¹ ÑÑ†ĞµĞ½Ñ‹
 	scenes.top()->draw();
 }
 

@@ -3,14 +3,14 @@
 
 void Application::run()
 {
-	// Создание окна
+	// СЃРѕР·РґР°РЅРёРµ РѕРєРЅР°
 	window.create({ 800, 600 }, "Even-Odd", sf::Style::Titlebar | sf::Style::Close);
 	window.setFramerateLimit(30);
 
-	// Инициализация начальной сцены
+	// РёРЅРёС†РёР°Р»РёР·Р°С†РёВ¤ РЅР°С‡Р°Р»СЊРЅРѕР№ СЃС†РµРЅС‹
 	SceneManager::getInstance().run(std::make_unique<MainMenuScene>());
 
-	// Главный цикл игры
+	// РіР»Р°РІРЅС‹Р№ С†РёРєР» РёРіСЂС‹
 	while (SceneManager::getInstance().running())
 	{
 		SceneManager::getInstance().nextState();
