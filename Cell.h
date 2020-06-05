@@ -5,24 +5,24 @@
 const sf::Color GUI_CELL_OUTLINE_COLOR(23, 42, 58, 255);
 const int GUI_CELL_OUTLINE_THICKNESS = 3;
 
-// Класс отдельной клетки на поле
+// РљР»Р°СЃСЃ РѕС‚РґРµР»СЊРЅРѕР№ РєР»РµС‚РєРё РЅР° РїРѕР»Рµ
 class Cell
 {
 private:
-	char value; // Значение клетки
-	sf::Text text; // Текст для отрисовки значения клетки
-	sf::RectangleShape rect; // Прямоугольник клетки
-	sf::Vector2f position; // Позиция клетки
-	bool isActive; // Состояние клетки
+	char value; // Р—РЅР°С‡РµРЅРёРµ РєР»РµС‚РєРё
+	sf::Text text; // РўРµРєСЃС‚ РґР»СЏ РѕС‚СЂРёСЃРѕРІРєРё Р·РЅР°С‡РµРЅРёСЏ РєР»РµС‚РєРё
+	sf::RectangleShape rect; // РџСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє РєР»РµС‚РєРё
+	sf::Vector2f position; // РџРѕР·РёС†РёСЏ РєР»РµС‚РєРё
+	bool isActive; // РЎРѕСЃС‚РѕСЏРЅРёРµ РєР»РµС‚РєРё
 public:
 	Cell();
 
-	void setFont(sf::Font& font); // Установка шрифта
-	void setValue(char Value); // Установка значения
-	char getValue() const; // Получение значения
-	void setPosition(float x, float y); // Установка позиции
-	void setSize(int size); // Установка размера
-	int getSize() const; // Получение размера
-	void setActive(bool active); // Получение состояния
-	void render(sf::RenderWindow& window); // Отрисовка клетки
+	void setFont(sf::Font& font); // РЈСЃС‚Р°РЅРѕРІРєР° С€СЂРёС„С‚Р°
+	void setValue(char Value); // РЈСЃС‚Р°РЅРѕРІРєР° Р·РЅР°С‡РµРЅРёСЏ
+	char getValue() const; // РџРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ
+	void setPosition(float x, float y); // РЈСЃС‚Р°РЅРѕРІРєР° РїРѕР·РёС†РёРё
+	void setSize(int size); // РЈСЃС‚Р°РЅРѕРІРєР° СЂР°Р·РјРµСЂР°
+	int getSize() const; // РџРѕР»СѓС‡РµРЅРёРµ СЂР°Р·РјРµСЂР°
+	void setActive(bool active); // РџРѕР»СѓС‡РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ
+	void render(sf::RenderWindow& window); // РћС‚СЂРёСЃРѕРІРєР° РєР»РµС‚РєРё
 };

@@ -4,36 +4,36 @@
 
 #include "Cell.h"
 
-// Стандартные настройки поля
+// РЎС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё РїРѕР»СЏ
 const sf::Color GUI_GRID_FILL_COLOR(8, 76, 97, 255);
 const sf::Color GUI_GRID_OUTLINE_COLOR(23, 42, 58, 255);
 
-// Класс игрового поля
+// РљР»Р°СЃСЃ РёРіСЂРѕРІРѕРіРѕ РїРѕР»СЏ
 class Grid
 {
 private:
-	int size; // Размер поля (size строк на size столбцов)
-	int cellSize; // Размер клетки
-	int filled; // Количество заполненных клеток
+	int size; // Р Р°Р·РјРµСЂ РїРѕР»СЏ (size СЃС‚СЂРѕРє РЅР° size СЃС‚РѕР»Р±С†РѕРІ)
+	int cellSize; // Р Р°Р·РјРµСЂ РєР»РµС‚РєРё
+	int filled; // РљРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРѕР»РЅРµРЅРЅС‹С… РєР»РµС‚РѕРє
 
-	sf::Vector2f position; // Позиция поля (верхний левый угол)
+	sf::Vector2f position; // РџРѕР·РёС†РёСЏ РїРѕР»СЏ (РІРµСЂС…РЅРёР№ Р»РµРІС‹Р№ СѓРіРѕР»)
 
-	sf::RectangleShape outlineRect; // Фоновый прямоугольник
-	sf::Font font; // Шрифт
-	Cell** cells; // Динамический массив клеток
-	Cell* activeCell; // Указатель на выделенную клетку
+	sf::RectangleShape outlineRect; // Р¤РѕРЅРѕРІС‹Р№ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє
+	sf::Font font; // РЁСЂРёС„С‚
+	Cell** cells; // Р”РёРЅР°РјРёС‡РµСЃРєРёР№ РјР°СЃСЃРёРІ РєР»РµС‚РѕРє
+	Cell* activeCell; // РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РІС‹РґРµР»РµРЅРЅСѓСЋ РєР»РµС‚РєСѓ
 public:
 	Grid(int Size);
 	~Grid();
 
-	void initGrid(int Size); // Функция создания поля
-	void setCell(int row, int col, char val); // Функция установки значения в клетку
-	sf::Vector2f getSize() const; // Получение размера в пикселях
-	int getGridSize() const; // Получения размера в клетках
-	void setPosition(float x, float y); // Установка позиции
+	void initGrid(int Size); // Р¤СѓРЅРєС†РёСЏ СЃРѕР·РґР°РЅРёСЏ РїРѕР»СЏ
+	void setCell(int row, int col, char val); // Р¤СѓРЅРєС†РёСЏ СѓСЃС‚Р°РЅРѕРІРєРё Р·РЅР°С‡РµРЅРёСЏ РІ РєР»РµС‚РєСѓ
+	sf::Vector2f getSize() const; // РџРѕР»СѓС‡РµРЅРёРµ СЂР°Р·РјРµСЂР° РІ РїРёРєСЃРµР»СЏС…
+	int getGridSize() const; // РџРѕР»СѓС‡РµРЅРёСЏ СЂР°Р·РјРµСЂР° РІ РєР»РµС‚РєР°С…
+	void setPosition(float x, float y); // РЈСЃС‚Р°РЅРѕРІРєР° РїРѕР·РёС†РёРё
 
-	bool checkWin(int& evens, int& odds); // Проверка на завершение игры
+	bool checkWin(int& evens, int& odds); // РџСЂРѕРІРµСЂРєР° РЅР° Р·Р°РІРµСЂС€РµРЅРёРµ РёРіСЂС‹
 
-	int input(sf::Event ev, sf::RenderWindow& window, int& row, int& col); // Обновление состояния
-	void render(sf::RenderWindow& window) const; // Отрисовка
+	int input(sf::Event ev, sf::RenderWindow& window, int& row, int& col); // РћР±РЅРѕРІР»РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ
+	void render(sf::RenderWindow& window) const; // РћС‚СЂРёСЃРѕРІРєР°
 };

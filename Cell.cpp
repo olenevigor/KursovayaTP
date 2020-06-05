@@ -19,7 +19,7 @@ void Cell::setValue(char Value)
 	value = Value;
 	text.setString(value);
 
-	// Текст выравнивается по центру клетки
+	// РўРµРєСЃС‚ РІС‹СЂР°РІРЅРёРІР°РµС‚СЃСЏ РїРѕ С†РµРЅС‚СЂСѓ РєР»РµС‚РєРё
 	text.setPosition(position.x + rect.getSize().x / 2 - text.getLocalBounds().width / 2,
 		position.y - rect.getSize().y / 2 + text.getLocalBounds().height / 2);
 }
@@ -36,7 +36,7 @@ void Cell::setPosition(float x, float y)
 
 	rect.setPosition(x, y);
 
-	// Текст выравнивается по центру клетки
+	// РўРµРєСЃС‚ РІС‹СЂР°РІРЅРёРІР°РµС‚СЃСЏ РїРѕ С†РµРЅС‚СЂСѓ РєР»РµС‚РєРё
 	text.setPosition(x + rect.getSize().x / 2 - text.getLocalBounds().width / 2,
 		y - rect.getSize().y / 2 + text.getLocalBounds().height / 2);
 }

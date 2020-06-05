@@ -2,10 +2,10 @@
 
 Grid::Grid(int Size) : activeCell(NULL), cellSize(48), filled(0)
 {
-	// Загрузка шрифта
+	// Р—Р°РіСЂСѓР·РєР° С€СЂРёС„С‚Р°
 	font.loadFromFile("Roboto-Medium.ttf");
 
-	// Создание поля
+	// РЎРѕР·РґР°РЅРёРµ РїРѕР»СЏ
 	initGrid(Size);
 }
 
@@ -23,26 +23,26 @@ void Grid::initGrid(int Size)
 	constexpr int minimum_size = 1;
 	if (Size < minimum_size) return;
 
-	// Всё поле вписывается в размер 336х336
-	// Соответственно вычисляем размер одной клетки
+	// Р’СЃС‘ РїРѕР»Рµ РІРїРёСЃС‹РІР°РµС‚СЃСЏ РІ СЂР°Р·РјРµСЂ 336С…336
+	// РЎРѕРѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕ РІС‹С‡РёСЃР»СЏРµРј СЂР°Р·РјРµСЂ РѕРґРЅРѕР№ РєР»РµС‚РєРё
 	cellSize = 336 / Size;
 	size = Size;
 
-	// Здесь можно вызвать очищение памяти, выделенной динамически
-	// Но функция initGrid вызывается 1 раз за сцену
-	// Поэтому это не требуется
+	// Р—РґРµСЃСЊ РјРѕР¶РЅРѕ РІС‹Р·РІР°С‚СЊ РѕС‡РёС‰РµРЅРёРµ РїР°РјСЏС‚Рё, РІС‹РґРµР»РµРЅРЅРѕР№ РґРёРЅР°РјРёС‡РµСЃРєРё
+	// РќРѕ С„СѓРЅРєС†РёСЏ initGrid РІС‹Р·С‹РІР°РµС‚СЃСЏ 1 СЂР°Р· Р·Р° СЃС†РµРЅСѓ
+	// РџРѕСЌС‚РѕРјСѓ СЌС‚Рѕ РЅРµ С‚СЂРµР±СѓРµС‚СЃСЏ
 
-	// Динамическое выделение памяти под клетки (строки)
+	// Р”РёРЅР°РјРёС‡РµСЃРєРѕРµ РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ РєР»РµС‚РєРё (СЃС‚СЂРѕРєРё)
 	cells = new Cell*[size];
 
 	for (int i = 0; i < size; i++)
 	{
-		// Динамическое выделение памяти под клетки (столбцы)
+		// Р”РёРЅР°РјРёС‡РµСЃРєРѕРµ РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ РєР»РµС‚РєРё (СЃС‚РѕР»Р±С†С‹)
 		cells[i] = new Cell[size];
 
 		for (int j = 0; j < size; j++)
 		{
-			// Настройка клетки
+			// РќР°СЃС‚СЂРѕР№РєР° РєР»РµС‚РєРё
 			cells[i][j].setFont(font);
 			cells[i][j].setSize(cellSize);
 			cells[i][j].setPosition(position.x + j * cellSize + j * GUI_CELL_OUTLINE_THICKNESS, 
@@ -50,7 +50,7 @@ void Grid::initGrid(int Size)
 		}
 	}
 
-	// Настройка фонового прямоугольника
+	// РќР°СЃС‚СЂРѕР№РєР° С„РѕРЅРѕРІРѕРіРѕ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°
 	outlineRect.setFillColor(GUI_GRID_FILL_COLOR);
 	outlineRect.setSize(sf::Vector2f(size * (cellSize + GUI_CELL_OUTLINE_THICKNESS), 
 		size * (cellSize + GUI_CELL_OUTLINE_THICKNESS)));
@@ -72,7 +72,7 @@ void Grid::setCell(int row, int col, char val)
 
 sf::Vector2f Grid::getSize() const
 {
-	// Используем globalBounds вместо getSize, чтобы учесть аутлайн
+	// РСЃРїРѕР»СЊР·СѓРµРј globalBounds РІРјРµСЃС‚Рѕ getSize, С‡С‚РѕР±С‹ СѓС‡РµСЃС‚СЊ Р°СѓС‚Р»Р°Р№РЅ
 	sf::FloatRect bounds = outlineRect.getGlobalBounds();
 	return sf::Vector2f(bounds.width, bounds.height);
 }
@@ -99,7 +99,7 @@ void Grid::setPosition(float x, float y)
 	outlineRect.setPosition(position.x - GUI_CELL_OUTLINE_THICKNESS, position.y - GUI_CELL_OUTLINE_THICKNESS);
 }
 
-// Функция для проверки конца игры
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїСЂРѕРІРµСЂРєРё РєРѕРЅС†Р° РёРіСЂС‹
 bool Grid::checkWin(int& evens, int& odds)
 {
 	if (filled < size * size) return false;
@@ -109,7 +109,7 @@ bool Grid::checkWin(int& evens, int& odds)
 
 	int tmp;
 
-	// Считаем четные и нечетные суммы в строках
+	// РЎС‡РёС‚Р°РµРј С‡РµС‚РЅС‹Рµ Рё РЅРµС‡РµС‚РЅС‹Рµ СЃСѓРјРјС‹ РІ СЃС‚СЂРѕРєР°С…
 	for (int i = 0; i < size; i++)
 	{
 		tmp = 0;
@@ -128,7 +128,7 @@ bool Grid::checkWin(int& evens, int& odds)
 		}
 	}
 
-	// Считаем четные и нечетные суммы в столбцах
+	// РЎС‡РёС‚Р°РµРј С‡РµС‚РЅС‹Рµ Рё РЅРµС‡РµС‚РЅС‹Рµ СЃСѓРјРјС‹ РІ СЃС‚РѕР»Р±С†Р°С…
 	for (int i = 0; i < size; i++)
 	{
 		tmp = 0;
@@ -147,7 +147,7 @@ bool Grid::checkWin(int& evens, int& odds)
 		}
 	}
 
-	// Считаем сумму в главной диагонале
+	// РЎС‡РёС‚Р°РµРј СЃСѓРјРјСѓ РІ РіР»Р°РІРЅРѕР№ РґРёР°РіРѕРЅР°Р»Рµ
 	tmp = 0;
 	for (int i = 0; i < size; i++)
 	{
@@ -163,7 +163,7 @@ bool Grid::checkWin(int& evens, int& odds)
 		odds++;
 	}
 
-	// Считаем сумму в побочной диагонале
+	// РЎС‡РёС‚Р°РµРј СЃСѓРјРјСѓ РІ РїРѕР±РѕС‡РЅРѕР№ РґРёР°РіРѕРЅР°Р»Рµ
 	tmp = 0;
 	for (int i = 0; i < size; i++)
 	{
@@ -184,7 +184,7 @@ bool Grid::checkWin(int& evens, int& odds)
 
 int Grid::input(sf::Event ev, sf::RenderWindow& window, int& row, int& col)
 {
-	// Проверка на движение мыши
+	// РџСЂРѕРІРµСЂРєР° РЅР° РґРІРёР¶РµРЅРёРµ РјС‹С€Рё
 	if (ev.type == sf::Event::MouseMoved)
 	{
 		sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
@@ -194,21 +194,21 @@ int Grid::input(sf::Event ev, sf::RenderWindow& window, int& row, int& col)
 			mousePosition.x -= position.x;
 			mousePosition.y -= position.y;
 
-			// Определяем, на какую клетку наведена мышь
+			// РћРїСЂРµРґРµР»СЏРµРј, РЅР° РєР°РєСѓСЋ РєР»РµС‚РєСѓ РЅР°РІРµРґРµРЅР° РјС‹С€СЊ
 			row = mousePosition.y / (cellSize + GUI_CELL_OUTLINE_THICKNESS);
 			col = mousePosition.x / (cellSize + GUI_CELL_OUTLINE_THICKNESS);
 
-			// Получаем указатель на эту клетку
+			// РџРѕР»СѓС‡Р°РµРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЌС‚Сѓ РєР»РµС‚РєСѓ
 			Cell* cell = &cells[row][col];
 			if (activeCell != cell)
 			{
-				// Если была активна другая клетка, снимаем с неё выделение
+				// Р•СЃР»Рё Р±С‹Р»Р° Р°РєС‚РёРІРЅР° РґСЂСѓРіР°СЏ РєР»РµС‚РєР°, СЃРЅРёРјР°РµРј СЃ РЅРµС‘ РІС‹РґРµР»РµРЅРёРµ
 				if (activeCell != NULL)
 				{
 					activeCell->setActive(false);
 				}
 
-				// Если клетка уже занята значением, она не можем быть выделена
+				// Р•СЃР»Рё РєР»РµС‚РєР° СѓР¶Рµ Р·Р°РЅСЏС‚Р° Р·РЅР°С‡РµРЅРёРµРј, РѕРЅР° РЅРµ РјРѕР¶РµРј Р±С‹С‚СЊ РІС‹РґРµР»РµРЅР°
 				if (cell->getValue() == 0)
 				{
 					activeCell = cell;
@@ -222,12 +222,12 @@ int Grid::input(sf::Event ev, sf::RenderWindow& window, int& row, int& col)
 		}
 		else if (activeCell != NULL)
 		{
-			// Если новой клетки нет, а старая не выделена, снимаем с неё выделение
+			// Р•СЃР»Рё РЅРѕРІРѕР№ РєР»РµС‚РєРё РЅРµС‚, Р° СЃС‚Р°СЂР°СЏ РЅРµ РІС‹РґРµР»РµРЅР°, СЃРЅРёРјР°РµРј СЃ РЅРµС‘ РІС‹РґРµР»РµРЅРёРµ
 			activeCell->setActive(false);
 			activeCell = NULL;
 		}
 	}
-	// Проверка на нажатие кнопки мыши
+	// РџСЂРѕРІРµСЂРєР° РЅР° РЅР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјС‹С€Рё
 	else if (ev.type == sf::Event::MouseButtonPressed)
 	{
 		if (activeCell != NULL)
@@ -238,18 +238,18 @@ int Grid::input(sf::Event ev, sf::RenderWindow& window, int& row, int& col)
 			mousePosition.x -= position.x;
 			mousePosition.y -= position.y;
 
-			// Инициализируем ссылки row и col для получения значений за пределами функции
+			// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј СЃСЃС‹Р»РєРё row Рё col РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ Р·РЅР°С‡РµРЅРёР№ Р·Р° РїСЂРµРґРµР»Р°РјРё С„СѓРЅРєС†РёРё
 			row = mousePosition.y / (cellSize + GUI_CELL_OUTLINE_THICKNESS);
 			col = mousePosition.x / (cellSize + GUI_CELL_OUTLINE_THICKNESS);
 
-			// Ставим 1 или 0 взависимости от нажатой кнопки мыши
+			// РЎС‚Р°РІРёРј 1 РёР»Рё 0 РІР·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РЅР°Р¶Р°С‚РѕР№ РєРЅРѕРїРєРё РјС‹С€Рё
 			if (ev.mouseButton.button == sf::Mouse::Left)
 			{
 				activeCell->setValue('1');
 				activeCell->setActive(false);
 				activeCell = NULL;
 				filled++;
-				return 1; // Говорим о том, что поставили 1
+				return 1; // Р“РѕРІРѕСЂРёРј Рѕ С‚РѕРј, С‡С‚Рѕ РїРѕСЃС‚Р°РІРёР»Рё 1
 			}
 			else if(ev.mouseButton.button == sf::Mouse::Right)
 			{
@@ -257,20 +257,20 @@ int Grid::input(sf::Event ev, sf::RenderWindow& window, int& row, int& col)
 				activeCell->setActive(false);
 				activeCell = NULL;
 				filled++;
-				return 0; // Говорим о том, что поставили 0
+				return 0; // Р“РѕРІРѕСЂРёРј Рѕ С‚РѕРј, С‡С‚Рѕ РїРѕСЃС‚Р°РІРёР»Рё 0
 			}
 		}
 	}
 
-	return -1; // Поле не менялось
+	return -1; // РџРѕР»Рµ РЅРµ РјРµРЅСЏР»РѕСЃСЊ
 }
 
 void Grid::render(sf::RenderWindow& window) const
 {
-	// Отрисовка фонового прямоугольника
+	// РћС‚СЂРёСЃРѕРІРєР° С„РѕРЅРѕРІРѕРіРѕ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°
 	window.draw(outlineRect);
 
-	// Отрисовка каждой клетки
+	// РћС‚СЂРёСЃРѕРІРєР° РєР°Р¶РґРѕР№ РєР»РµС‚РєРё
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < size; j++)
